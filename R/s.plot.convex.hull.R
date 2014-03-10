@@ -1,7 +1,48 @@
-################################################################################
-# Convex Hull plot
-s.plot.convex.hull = function (ch.isotopes.sources, ch.isotopes.mixtures, ch.n.mixtures, n.sources, n.isotopes, names.sources, names.isotopes, ch.names.mixtures, title.mixture, ch.isotope.mvn.sample, ch.concentration.sources, ch.efficiency.sources, ch.isotope.sigma, tit, analysis.name, filename.prefix, ch.plot.filename, plot.format.list, ch.matrix.sw = 0)
+s.plot.convex.hull <-
+function# Convex Hull plot
+### internal function for sisus
+(ch.isotopes.sources
+### internal variable
+, ch.isotopes.mixtures
+### internal variable
+, ch.n.mixtures
+### internal variable
+, n.sources
+### internal variable
+, n.isotopes
+### internal variable
+, names.sources
+### internal variable
+, names.isotopes
+### internal variable
+, ch.names.mixtures
+### internal variable
+, title.mixture
+### internal variable
+, ch.isotope.mvn.sample
+### internal variable
+, ch.concentration.sources
+### internal variable
+, ch.efficiency.sources
+### internal variable
+, ch.isotope.sigma
+### internal variable
+, tit
+### internal variable
+, analysis.name
+### internal variable
+, filename.prefix
+### internal variable
+, ch.plot.filename
+### internal variable
+, plot.format.list
+### internal variable
+, ch.matrix.sw = 0
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
 
   # when ch.matrix.sw = 1, then the matrix plot is performed, otherwise a bunch of individual isotope pairs.
 
@@ -248,6 +289,7 @@ s.plot.convex.hull = function (ch.isotopes.sources, ch.isotopes.mixtures, ch.n.m
 
   } # plotting loop
 
+  ### internal variable
 } # s.plot.convex.hull.matrix()
 
 # outside titles Convex Hull matrix plot
@@ -262,4 +304,6 @@ s.plot.convex.hull.titles = function (n.sources, n.isotopes, names.isotopes, ana
     mtext(paste(n.isotopes, "Isotopes: ", paste(sprintf("%s",names.isotopes),collapse=", ")), side=4, line=1, outer=TRUE);  # right
     # mtext(expression(paste("Isotopes: ", delta^{13}, "C")), side=4, line=-1, outer=TRUE);  # right
         # having trouble getting the n.isotopes in the front of the line, also trouble feeding the delta^13 as a variable.
-} # s.plot.convex.hull.titles()
+
+  ### internal variable
+}

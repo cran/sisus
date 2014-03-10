@@ -1,41 +1,30 @@
-\name{sisus-package}
-\alias{sisus-package}
-\alias{sisus-package}
-\docType{package}
-\title{
-sisus reads in a specific Excel-like workbook and performs an IsoSource-type analysis
-}
-\description{
-Provides sample of feasible solutions to pi in linear systems, b = A*pi. \cr
-Designed in the language of stable isotope mixing models for ecological and biological applications.
-}
-\details{
-\tabular{ll}{
-Package: \tab sisus\cr
-Type: \tab Package\cr
-Version: \tab 0.09-011\cr
-Date: \tab 2008-05-22\cr
-License: \tab GNU General Public License (GPL)\cr
-}
-sisus(filename) is the only user function
-}
-\author{
-Erik Barry Erhardt
-
-Maintainer: Erik Barry Erhardt <erik@statacumen.com>
-}
-%\references{
-%~~ Literature or other references for background information ~~
-%}
-%~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
-%\keyword{ package }
-%\seealso{
-%~~ Optional links to other man pages, e.g. ~~
-%~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-%}
-\examples{
-## # set working directory for many output files with setwd()
-## # see http://statacumen.com/sisus for workbook
-## filename = "http://statacumen.com/old/sisus/examples/SISUS_v0_09_template.xls";
-## sisus(filename)
-}
+\name{sisus-package}
+\alias{sisus-package}
+\alias{sisus}
+\docType{package}
+\title{SISUS: Stable Isotope Sourcing using Sampling}
+\description{SISUS for source partitioning using stable isotopes.
+SISUS reads in a specific Excel-like workbook and performs an IsoSource-type analysis by
+returning a sample of feasible solutions to p in the non-over constrained linear systems, b=Ap.
+Edit \file{sisus_*_template.xls} and input data values and run parameters.
+Run \code{\link{sisus.run}(filename)}. See output in current working directory.}
+\details{
+\tabular{ll}{Package: \tab sisus\cr
+Version: \tab 3.9-12\cr
+Date: \tab 2014-03-10\cr
+Title: \tab SISUS: Stable Isotope Sourcing using Sampling\cr
+Authors@R: \tab person(given = "Erik Barry", family = "Erhardt", email = "erik@statacumen.com", role = c("aut", "cre"))\cr
+Depends: \tab R (>= 3.0.0)\cr
+Imports: \tab MASS, RColorBrewer, coda, gtools, moments, polyapost, rcdd, stats\cr
+Suggests: \tab gdata\cr
+License: \tab GPL (>= 2)\cr
+LazyLoad: \tab yes\cr
+URL: \tab http://StatAcumen.com/sisus\cr
+Author: \tab Erik Barry Erhardt <erik@statacumen.com> [aut, cre]\cr
+Maintainer: \tab Erik Barry Erhardt <erik@statacumen.com> [aut, cre]\cr}
+}
+\author{Erik Barry Erhardt <erik@statacumen.com> [aut, cre]}
+
+\keyword{ package }
+
+

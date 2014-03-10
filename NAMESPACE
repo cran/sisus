@@ -1,27 +1,4 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
+import(MASS, RColorBrewer, coda, gtools, moments, polyapost, rcdd, stats)
 
-# Export all names
-exportPattern(".")
+exportPattern("^[[:alpha:]]+")
 
-# Import all packages listed as Imports or Depends
-import(
-  annotate,
-  ash,
-  Biobase,
-  coda,
-  ellipse,
-  gclus,
-  gdata,
-  geneplotter,
-  gplots,
-  gtools,
-  hdrcde,
-  moments,
-  mvtnorm,
-  polyapost,
-  rcdd,
-  RColorBrewer,
-  stats,
-  sm
-)

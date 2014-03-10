@@ -1,5 +1,15 @@
-################################################################################
-# Assign variables from input file to variable names
+assign.variables <-
+function# Assign variables from input file to variable names
+### internal function for sisus
+(DATA
+### internal variable
+, first=0
+### internal variable
+)
+{
+  ##details<<
+  ## interal function for sisus.run()
+
 #
 #   When making changes to the workbook, need to:
 #     1. get.data.R define sheet names
@@ -7,8 +17,6 @@
 #     3. sisus.R assign variables
 #     4. write.input.R define sheet names
 #
-assign.variables = function (DATA, first=0)
-{
 
     # worksheets from workbook
     SISUS.PARAMETERS                    = DATA$SISUS.PARAMETERS               ;
@@ -380,4 +388,5 @@ assign.variables = function (DATA, first=0)
  # VARIABLES$efficiency.sigma                       = efficiency.sigma;
 
   return( as.list(VARIABLES) );
-} # assign.variables()
+  ### internal variable
+}

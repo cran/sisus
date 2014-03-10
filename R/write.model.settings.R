@@ -1,8 +1,25 @@
-################################################################################
-# Write model settings to the process log
-#
-write.model.settings = function (n.mixtures, n.sources, n.isotopes, analysis.name, filename.prefix, mixtures.group.name, SW)
+write.model.settings <-
+function# Write model settings to the process log
+### internal function for sisus
+(n.mixtures
+### internal variable
+, n.sources
+### internal variable
+, n.isotopes
+### internal variable
+, analysis.name
+### internal variable
+, filename.prefix
+### internal variable
+, mixtures.group.name
+### internal variable
+, SW
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
 
         p.o = paste("\n"); write.out(p.o);
         p.o = paste("### SISUS Model Settings ###", "\n"); write.out(p.o);
@@ -82,4 +99,5 @@ write.model.settings = function (n.mixtures, n.sources, n.isotopes, analysis.nam
         p.o = paste("\n"); write.out(p.o);
 
 
-} # write.model.settings()
+  ### internal variable
+}

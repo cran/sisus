@@ -1,8 +1,13 @@
-################################################################################
-# Clean up filenames, replacing spaces and bad characters with "_" and "-"
-#
-filename.clean = function (filename)
+filename.clean <-
+function# Clean up filenames, replacing spaces and bad characters with "_" and "-"
+### internal function for sisus
+(filename
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
     #bad.char.list = "!@#$%^&*+=/`'\"{}[]:;<>,.?|";  # represents list of bad characters
 
   filename = gsub(" ", "_", filename);                                        # replace space by underscore "_"
@@ -12,4 +17,5 @@ filename.clean = function (filename)
 
   return(filename);
 
-} # filename.clean()
+  ### internal variable
+}

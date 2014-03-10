@@ -1,7 +1,23 @@
-################################################################################
-# Additional Linear Constraints
-additional.linear.constraints = function (constraints.cols, constraints.type, constraints.RHS.b, constraints.sources, n.sources, lc.include.sw )
+additional.linear.constraints <-
+function# Additional Linear Constraints
+### internal function for sisus
+(constraints.cols
+### internal variable
+, constraints.type
+### internal variable
+, constraints.RHS.b
+### internal variable
+, constraints.sources
+### internal variable
+, n.sources
+### internal variable
+, lc.include.sw
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
   # create vectors and matricies of additional linear constraints
   b1.constraints = NULL; A1.constraints = NULL; # Ax =b;
   b2.constraints = NULL; A2.constraints = NULL; # Ax<=b;
@@ -104,4 +120,5 @@ additional.linear.constraints = function (constraints.cols, constraints.type, co
   lc$b3.constraints = b3.constraints;
   lc$A3.constraints = A3.constraints;
   return( as.list(lc) );
-} # additional.linear.constraints()
+  ### internal variable
+}

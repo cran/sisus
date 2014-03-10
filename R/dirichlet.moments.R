@@ -1,7 +1,17 @@
-################################################################################
-# Calculate the moments of the Dirichlet distribution given the values of vector alpha
-dirichlet.moments = function (alpha.in, priors.precision, priors.sources)
+dirichlet.moments <-
+function# Calculate the moments of the Dirichlet distribution given the values of vector alpha
+### internal function for sisus
+(alpha.in
+### internal variable
+, priors.precision
+### internal variable
+, priors.sources
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
   # dirEV() by Erik Barry Erhardt 12/26/2006 3:40PM
   # this function is for exploration of priors on the p vector
   # Given a vector of dirichlet parameters alpha, it will return the first couple moments of the p's
@@ -20,4 +30,5 @@ dirichlet.moments = function (alpha.in, priors.precision, priors.sources)
   p.o = paste("           Variance: ",                  paste(p.Var,            collapse=", "), "\n"); write.out(p.o);
   p.o = paste("           StdDev:   ",                  paste(p.SD,             collapse=", "), "\n"); write.out(p.o);
 
-} # dirichlet.moments()
+  ### internal variable
+}

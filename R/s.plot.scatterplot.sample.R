@@ -1,11 +1,37 @@
-################################################################################
-# Scatterplot matrix
-#s.plot.scatterplot.sample = function (sam, n.sources, n.isotopes, names.isotopes, names.mixtures.indy, names.sources, tit, analysis.name, filename.prefix, plot.filename, plot.format.list)
-s.plot.scatterplot.sample = function (p.results, p.results.name, n.sources, n.isotopes, names.isotopes, names.mixtures.indy, names.sources, analysis.name, filename.prefix, plot.filename, plot.format.list)
+s.plot.scatterplot.sample <-
+function# Scatterplot matrix
+### internal function for sisus
+(p.results
+### internal variable
+, p.results.name
+### internal variable
+, n.sources
+### internal variable
+, n.isotopes
+### internal variable
+, names.isotopes
+### internal variable
+, names.mixtures.indy
+### internal variable
+, names.sources
+### internal variable
+, analysis.name
+### internal variable
+, filename.prefix
+### internal variable
+, plot.filename
+### internal variable
+, plot.format.list
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
   # Scatterplots with smoothed densities color representation (http://addictedtor.free.fr/graphiques/RGraphGallery.php?graph=139)
-  library("geneplotter"); # will load "annotate", "Biobase", "tools"
-  library("RColorBrewer");
+  # library("geneplotter"); # will load "annotate", "Biobase", "tools"  REMOVED  3/5/2014
+  # attached via DESCRIPTION # library("MASS")  # for kde2d() density plot
+  # attached via DESCRIPTION # library("RColorBrewer");
 
   for (i.plot in plot.format.list)
   {
@@ -21,8 +47,9 @@ s.plot.scatterplot.sample = function (p.results, p.results.name, n.sources, n.is
           labels = names.sources,
           oma = c(5,4,4,5)*2, mar = c(4,4,2,2)*2,
           #upper.panel = function(...) { par(new=TRUE); smoothScatter(..., nrpoints=Inf, xaxt = "n", yaxt = "n"); },
-          upper.panel = function(...) { par(new=TRUE); plot(..., type="p", pch=19, cex=.001, xaxt = "n", yaxt = "n"); },
-          lower.panel = function(...) { par(new=TRUE); smoothScatter(..., nrpoints=0  , bandwidth=c(0.01,0.01), xaxt = "n", yaxt = "n"); },
+          upper.panel = function(x,y, ...) { par(new=TRUE); plot(x, y, type="p", pch=19, cex=.001, xaxt = "n", yaxt = "n"); },
+          lower.panel = function(x,y, ...) { par(new=TRUE); image(kde2d(x, y, h=0.025, n=100, lims=c(0,1,0,1)), col = colorRampPalette(brewer.pal(9,"Blues"))(100), add=TRUE) },
+                                                     # smoothScatter(..., nrpoints=0  , bandwidth=c(0.01,0.01), xaxt = "n", yaxt = "n"); },
           #upper.panel = function(...) { par(new=TRUE); smoothScatter(..., nrpoints=0); },
           #lower.panel = function(...) { par(new=TRUE); colors = densCols(...); plot(..., col=colors, pch=200); }
           #lower.panel = function(...) { par(new=TRUE); plot(..., type="p", pch=19, cex=.001); },
@@ -48,13 +75,5 @@ s.plot.scatterplot.sample = function (p.results, p.results.name, n.sources, n.is
     s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "end");
   } # plotting loop
 
-} # s.plot.scatterplot.sample()
-diag.panel.hist = function (x, ...)
-{
-  usr = par("usr"); on.exit(par(usr))
-  par(usr = c(usr[1:2], 0, 1.5) )
-  h = hist(x, plot = FALSE)
-  breaks = h$breaks; nB = length(breaks)
-  y = h$counts; y = y/max(y)
-  rect(breaks[-nB], 0, breaks[-1], y, col="steelblue3", ...)
-} # diag.panel.hist()
+  ### internal variable
+}

@@ -1,32 +1,15 @@
-################################################################################
+##
 # SISUS: Stable Isotope Sourcing using Sampling
 #   Erik Barry Erhardt, Began: December 2006
 #
+#   Current: 3/10/2014
+#
 #   Program description
 #     Package: sisus
-#     Version: 0.08-010  [release].[spreadsheet_version]-[code_revision]
-#     Date: 2007-05-30
-#     Title: SISUS: Stable Isotope Sourcing Using Sampling
-#     Author: Erik Barry Erhardt <erike@stat.unm.edu>
-#     Maintainer: Erik Barry Erhardt <erike@stat.unm.edu>
-#     Depends: R (>= 2.0.0),
-#         "fdrtool","locfdr","splines","gdata","gtools","polyapost","sm","gclus","moments"
-#         "RColorBrewer","geneplotter","annotate","Biobase"  # bioconductor # for 139 Scatterplots with smoothed densities color representation (http://addictedtor.free.fr/graphiques/RGraphGallery.php?graph=139)
-#         "hdrcde","ash"  # for 104 Bivariate Highest density regions (http://addictedtor.free.fr/graphiques/RGraphGallery.php?graph=104)
-#         "ellipse","chplot" # for 61 Augmented Convex Hull (http://addictedtor.free.fr/graphiques/RGraphGallery.php?graph=61)
-#         "gplots" # for 2D histogram
-#         "mvtnorm" # drawing from a MV Normal for uncertainty in isotope measurements
-#         "Cairo" # raster format plots
-#     Devel additional packages:
-#       rgl, misc3d
-#     Suggests:
-#     Description: Like IsoSource, but more.
-#     License: None (later: GPL version 2 or newer)
-#     URL: http://www.r-project.org, http://statacumen.com/sisus
+#     Version: 3.09-012  [release].[spreadsheet_version]-[code_revision]
 #
 #
-#
-################################################################################
+##
 ## to do:
 #
 #
@@ -46,7 +29,7 @@
 #     Online bibliography for the SISUS software
 #
 #   R-package:
-#     arguments in sisus() function: output.dir = "where results should be output to", defaulting to current directory
+#     arguments in sisus.run() function: output.dir = "where results should be output to", defaulting to current directory
 #     SVN to updating R-forge
 #     populating subdirectories: tests, src, po, inst, exec, demo, data
 #     write documentation in man/
@@ -106,7 +89,7 @@
 #   manuscript:
 #     Add references from used packages and functions to a software references section
 #
-################################################################################
+##
 ## completed:
 #
 #  v.0.09-011: R 2.7
@@ -235,12 +218,12 @@
 #       *  5/14/2007  4:07PM logo for SISUSWiki -- maybe just scaled image of website sideways flowers
 #       *  5/13/2007 10:07PM donations page
 #       *  5/14/2007  8:22PM bug reporting link to SISUSWiki
-################################################################################
+##
 #
 #
-########################################
+##
 #   RWUI for creating SISUS application on web
-######
+##
 #     Enter a title for the application
 #       SISUS:  Stable Isotope Sourcing using Sampling
 #     Enter an introductory explanation (optional)
@@ -291,7 +274,7 @@
 #     The completed web application for you to download (Right-Click, Save As ...) :
 #     sisus.tgz   or    sisus.zip
 #       [sisus.zip], download
-######
+##
 #     Installing on StatAcumen.com/sisus website.
 #       Extract sisus.war
 #       If current sisus is running at StatAcumen.com,
@@ -302,7 +285,7 @@
 #         Tomcat will automatically deploy sisus.war when upload is complete
 #       chmod 755 ./sisus/WEB-INF/srcmd.sh  (don't know better set of permissions, but this works)
 #       copy all F:\USERS\Erik\StatAcumen\sisus\SISUS\*.R programs to /home/erik/website/apache-tomcat-5.5.23/webapps/sisus/WEB-INF
-######
+##
 #     Resizing process_info.txt window
 #       Edit these two files:
 #         /home/erik/website/apache-tomcat-5.5.23/webapps/sisus/EnterData.jsp
@@ -326,16 +309,16 @@
 #          </script>
 #
 #
-########################################
+##
 #   Excel workbook creation
 #
-####################
+##
 #     When making changes to the workbook, need to:
 #       1. get.data.R define sheet names
 #       2. assign.variables.R define variables
 #       3. sisus.R assign variables
 #       4. write.input.R define sheet names
-####################
+##
 #     Data validation for input parameter fields
 #       Menu: Data/Validation
 #         Settings:
@@ -344,7 +327,7 @@
 #         Error Alert:
 #           Check "Show error..."
 #           Style: Stop, Title: "Valid input is 0 or 1 only", Error message: "Please enter 0 or 1"
-####################
+##
 #     Data validation for input data fields
 #       Menu: Data/Validation
 #         Settings:
@@ -353,30 +336,30 @@
 #         Error Alert:
 #           Check "Show error..."
 #           Style: Stop, Title: "Number", Error message: "Please enter number between -999999 and 999999"
-####################
+##
 #     Conditional format color of cells different from "no effect"
 #       Menu: Format/Conditional Formatting
 #         Cell Value Is, equal to, [0 or 1], Format [color],
 #         Add to do other values
-####################
+##
 #     Conditional format color of cells for input (names)
 #       Menu: Format/Conditional Formatting
 #         Cell Value Is, equal to, ="" (blank), Format [color],
 #         Cell Value Is, not equal to, ="" (blank), Format [color],
-####################
+##
 #     Protecting Worksheet Cells
 #       Select worksheet by clicking upper-left-most row/column header
 #         Menu: Format/Cells, Protection: Locked
 #       Select range for user input
 #         Menu: Format/Cells, Protection: Not Locked
 #       Menu: Tools/Protection/Protect Sheet, Select unlocked cells only, no password
-####################
+##
 #     Protecting Workwork
 #       Menu: Tools/Protection/Protect Workbook, Structure only, no password
 #
 #
 #
-################################################################################
+##
 
 ## devel stuff
 ##detach(package:sisus); # remove package from R memory
@@ -386,7 +369,7 @@
 # #library(sisus)
 # #setwd("F:\\USERS\\Erik\\StatAcumen\\sisus\\SISUS\\work\\test");  # set working directory
 # #filename = "SISUS_v0_09_template_devel.xls";
-# #sisus(filename)
+# #sisus.run(filename)
 # #filename = "SISUS_v0_08_Hobson2003_Geese_3-2ExampleAE_Albumen_CNsimplexPlot_AECDMM_corrected_2.xls";
 # setwd("F:\\USERS\\Erik\\StatAcumen\\sisus\\SISUS\\work\\TimeStudy");  # set working directory
 # #filename = "SISUS_v0_08_Time_Study.xls";
@@ -396,12 +379,29 @@
 # setwd("F:\\USERS\\Erik\\StatAcumen\\sisus\\SISUS\\work\\KP2002BearAE");  # set working directory
 # filename = "SISUS_v0_08_KP2002BearAE.xls";
 # filename = "SISUS_v0_08_KP2002BearAE_thrash_for_plots.xls";
-# sisus(filename)
+# sisus.run(filename)
+#
+## 3/4/2014
+# library(sisus)
+# setwd("C:/Dropbox/StatAcumen/sisus/SISUS/R-package/bugs/20140304_upgrade");
+# filename = "SISUS_v0_09_template_S33only.xls";
+# sisus.run(filename)
+##
 
-################################################################################
-sisus = function (filename)
+sisus.run <-
+structure( # structure to add an example attribute at the end
+function# driver program for SISUS
+### runs the stable isotope analysis using the specified Excel-like workbook input dataset
+##references<< Erhardt, Erik Barry. SISUS: Stable Isotope Sourcing using Sampling, Getting Started. May 30, 2007
+##references<< \url{http://statacumen.com/sisus/}
+(filename
+### The Excel workbook name.  A modified version of sisus_*_templateX.xls
+### template workbook available in the package sisus/exec folder and at http://statacumen.com/sisus/
+)
+# DRIVER FUNCTION -------------------------------------------------------------
 {
-  sisus.version = "0.09-011 (2008-05-22)";   # current version of SISUS, from completed list above
+
+  sisus.version = "3.9-012 (2014-03-10)";   # current version of SISUS, from completed list above
   R.version = R.Version()$version.string; # version of R running
 
   # Output filenames (more after variables to include filename.prefix)
@@ -512,6 +512,7 @@ sisus = function (filename)
 
   ########################################
   # prior on p
+        # prior removed at v0.09 until these ideas are developed 5/22/2008 3:42PM
   if (SW$prior.include.sw == 1) {
           p.o = paste("Dirichlet prior on p vector", "\n"); write.progress(p.o, time.start);
     alpha.p.dirichlet = prior.on.p(priors.sources, priors.precision, n.sources);
@@ -546,7 +547,7 @@ sisus = function (filename)
     if (SW$assimeffic.include.sw     == 1) { tit.efficiency     = "Efficiency";                } else { tit.efficiency     = ""; };
     if (SW$concentration.include.sw  == 1 && SW$assimeffic.include.sw == 1) { tit.hyphen = "-";   } else { tit.hyphen = ""; };
     if (SW$concentration.include.sw  == 1 || SW$assimeffic.include.sw == 1) { tit.with = " with "; tit.curves = " Curves"; } else { tit.with = ""; tit.curves = ""; };
-    tit.iso = "Isotopic Signatures";
+    tit.iso = "Isotope Ratios";
 
     #tit = paste(tit.discrimination, tit.iso, tit.with, tit.concentration, tit.hyphen, tit.efficiency, tit.curves, sep=""); # construct plot title
     tit = tit.iso; # construct plot title
@@ -825,6 +826,19 @@ sisus = function (filename)
         p.o = paste("SISUS Complete", "\n"); write.progress(p.o, time.start);
 
   file.copy(process.filename, paste(filename.prefix, "_", process.filename, sep=""));  # copy process filename to use prefix
-} # sisus()
 
-# End #
+  ### no value returned, many output files produced depending on options specified in workbook
+
+},
+  #example
+  # # set working directory for many output files with setwd()
+  # # see http://statacumen.com/sisus for workbook
+  # filename = "http://statacumen.com/sw/sisus/examples/SISUS_v0_09_template.xls";
+  # sisus.run(filename)
+ex=function(){
+  # set working directory for many output files with setwd()
+  # see http://statacumen.com/sisus for workbook
+  filename = "http://statacumen.com/sw/sisus/examples/SISUS_v0_09_template.xls";
+  sisus.run(filename)
+}
+)

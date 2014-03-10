@@ -1,15 +1,43 @@
-################################################################################
-# MCMC Diagnostics
-mcmc.diagnostics = function (p.biomass.sam, p.results.name, names.mixtures.indy, n.sources, names.sources, n.isotopes, names.isotopes, M.actual, output.mcmc.diagnostics.filename, filename.prefix, analysis.name, plot.format.list)
+mcmc.diagnostics <-
+function# MCMC Diagnostics
+### internal function for sisus
+(p.biomass.sam
+### internal variable
+, p.results.name
+### internal variable
+, names.mixtures.indy
+### internal variable
+, n.sources
+### internal variable
+, names.sources
+### internal variable
+, n.isotopes
+### internal variable
+, names.isotopes
+### internal variable
+, M.actual
+### internal variable
+, output.mcmc.diagnostics.filename
+### internal variable
+, filename.prefix
+### internal variable
+, analysis.name
+### internal variable
+, plot.format.list
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
 #### cross corr plots are not plotting correctly
 #### Geweke plot has cutoffs extending beyond plot box
 
 #     Provide a collection of diagnostic output with interpretations and suggestions if failed
 #       R coda package: (http://cran.r-project.org/src/contrib/Descriptions/coda.html)
 
-  library("coda");
-  library("stats");  # for capture.output()
+  # attached via DESCRIPTION # library("coda");
+  # attached via DESCRIPTION # library("stats");  # for capture.output()
 
   alpha.sig = 0.05;
   acf.max = 0.05;
@@ -132,30 +160,30 @@ mcmc.diagnostics = function (p.biomass.sam, p.results.name, names.mixtures.indy,
 #  capture.output(r.crosscorr, file = output.mcmc.diagnostics.filename, append = TRUE);
 
 
-  ########################################
-  # levelplot(line[[2]]) also for crosscorrelation plot
-  for (i.plot in plot.format.list)
-  {
-    s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "begin", plot.format = i.plot);
-
-    #par(mar=c(2,5,2,2), oma=c(7,4,5,4));  # mar allows the histograms to touch top-bottom c(bot,lef,top,rig)
-
-    ## Create plot
-    #levelplot(mcmc.p);
-    levelplot(mcmc.p, main=paste(p.results.name,": ", paste(names.mixtures.indy)), sub=paste("MCMC Diagnostics: Cross Correlations"));
-
-    # box("outer", col="black")  # draw a box around the entire figure
-   # mtext(paste("MCMC Diagnostics: Cross Correlations"), side=1, line=3, outer=TRUE);  # bottom
-   # mtext(paste("SISUS: Stable Isotope Sourcing using Sampling"), side=1, line=5, outer=TRUE);  # bottom (line specifies)
-   # mtext(paste(n.sources, " Sources"), side=2, line=1, outer=TRUE);                             # left
-   # mtext(paste(p.results.name,": ", paste(names.mixtures.indy)), cex = 1.2, side=3, line=2, outer=TRUE);          # top
-   # mtext(paste(analysis.name), cex = 0.8, side=3, line=.5, outer=TRUE);                                      # top
-   # mtext(paste(n.isotopes, "Isotopes: ", paste(sprintf("%s",names.isotopes),collapse=", ")), side=4, line=0, outer=TRUE);  # right
-    #par(ask = FALSE);
-
-    #s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "print");
-    s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "end");
-  } # i.plot plotting loop
+  ## ########################################
+  ## # levelplot(line[[2]]) also for crosscorrelation plot
+  ## for (i.plot in plot.format.list)
+  ## {
+  ##   s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "begin", plot.format = i.plot);
+  ##
+  ##   #par(mar=c(2,5,2,2), oma=c(7,4,5,4));  # mar allows the histograms to touch top-bottom c(bot,lef,top,rig)
+  ##
+  ##   ## Create plot
+  ##   #levelplot(mcmc.p);
+  ##   levelplot(mcmc.p, main=paste(p.results.name,": ", paste(names.mixtures.indy)), sub=paste("MCMC Diagnostics: Cross Correlations"));
+  ##
+  ##   # box("outer", col="black")  # draw a box around the entire figure
+  ##  # mtext(paste("MCMC Diagnostics: Cross Correlations"), side=1, line=3, outer=TRUE);  # bottom
+  ##  # mtext(paste("SISUS: Stable Isotope Sourcing using Sampling"), side=1, line=5, outer=TRUE);  # bottom (line specifies)
+  ##  # mtext(paste(n.sources, " Sources"), side=2, line=1, outer=TRUE);                             # left
+  ##  # mtext(paste(p.results.name,": ", paste(names.mixtures.indy)), cex = 1.2, side=3, line=2, outer=TRUE);          # top
+  ##  # mtext(paste(analysis.name), cex = 0.8, side=3, line=.5, outer=TRUE);                                      # top
+  ##  # mtext(paste(n.isotopes, "Isotopes: ", paste(sprintf("%s",names.isotopes),collapse=", ")), side=4, line=0, outer=TRUE);  # right
+  ##   #par(ask = FALSE);
+  ##
+  ##   #s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "print");
+  ##   s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "end");
+  ## } # i.plot plotting loop
 
 
   ################################################################################
@@ -360,4 +388,5 @@ mcmc.diagnostics = function (p.biomass.sam, p.results.name, names.mixtures.indy,
   return( as.list(mcmc.diag.status) );
 
 
-} # mcmc.diagnostics()
+  ### internal variable
+}

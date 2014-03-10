@@ -1,7 +1,39 @@
-################################################################################
-# Plot marginal histograms
-s.plot.marginal.histogram = function (p.results, p.results.name, n.sources, n.isotopes, M.actual, hist.bins, names.isotopes, names.mixtures.indy, names.sources, analysis.name, filename.prefix, plot.filename, plot.format.list, SW)
+s.plot.marginal.histogram <-
+function# Plot marginal histograms
+### internal function for sisus
+(p.results
+### internal variable
+, p.results.name
+### internal variable
+, n.sources
+### internal variable
+, n.isotopes
+### internal variable
+, M.actual
+### internal variable
+, hist.bins
+### internal variable
+, names.isotopes
+### internal variable
+, names.mixtures.indy
+### internal variable
+, names.sources
+### internal variable
+, analysis.name
+### internal variable
+, filename.prefix
+### internal variable
+, plot.filename
+### internal variable
+, plot.format.list
+### internal variable
+, SW
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
   #library("splines")  # for density.pr()
   #library("locfdr")   # for density.pr()
   #library("fdrtool")  # for density.pr()
@@ -46,7 +78,7 @@ s.plot.marginal.histogram = function (p.results, p.results.name, n.sources, n.is
       # density.pr() no longer works, use density() to smooth histogram
       r.max_y = hist(p.results[,i], nbins, freq=FALSE, plot=TRUE, main=NULL, xlab = NULL, ylab=paste(names.sources[i]), xlim = c(0,1), xaxp = c(0,1,10), ylim = c(0,max_y), axes = TRUE, col = color.histogram, labels = FALSE);
       if (SW$hist.density.sw == 1) {
-        lines(density(p.results[,i], kernel="optcosine", from=max(0,min(p.results[,i])), to=min(1,max(p.results[,i])), adjust=density.adjust), lwd=3, xpd=NA, col = color.density.smoother ); # density smooth histogram
+        lines(density(p.results[,i], kernel="optcosine", from=max(0,min(p.results[,i])), to=min(1,max(p.results[,i])), adjust=density.adjust), lwd=2, xpd=NA, col = color.density.smoother ); # density smooth histogram
       }
           ## possible kernel = c("gaussian", "epanechnikov", "rectangular", "triangular", "biweight", "cosine", "optcosine")
 
@@ -68,4 +100,5 @@ s.plot.marginal.histogram = function (p.results, p.results.name, n.sources, n.is
     s.plot.settings.begin.end(filename.prefix, plot.filename, plot.mode = "end");
   } # i.plot plotting loop
 
-} # s.plot.marginal.histogram()
+  ### internal variable
+}

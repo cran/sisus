@@ -1,5 +1,17 @@
-################################################################################
-# Write input values out to a file
+write.input <-
+function# Write input values out to a file
+### internal function for sisus
+(DATA
+### internal variable
+, filename
+### internal variable
+, output.inputs.filename
+### internal variable
+)
+{
+  ##details<<
+  ## interal function for sisus.run()
+
 #
 #   When making changes to the workbook, need to:
 #     1. get.data.R define sheet names
@@ -7,8 +19,6 @@
 #     3. sisus.R assign variables
 #     4. write.input.R define sheet names
 #
-write.input = function (DATA, filename, output.inputs.filename)
-{
   #fn = paste(".\\output\\", output.inputs.filename, sep="");
   fn = output.inputs.filename;
   h = "########"; s = ":: sheet";
@@ -31,4 +41,5 @@ write.input = function (DATA, filename, output.inputs.filename)
  # i.s = 13; s.n = paste(h, filename, s, i.s, h); write(s.n, file = fn, append = TRUE, sep = ","); write(t(DATA$MIXTURES.EFFICIENCY.STDDEV    ), file = fn, ncolumns = dim(DATA$MIXTURES.EFFICIENCY.STDDEV    )[2], append = TRUE, sep = ",");
  # i.s = 14; s.n = paste(h, filename, s, i.s, h); write(s.n, file = fn, append = TRUE, sep = ","); write(t(DATA$SOURCES.EFFICIENCY.STDDEV     ), file = fn, ncolumns = dim(DATA$SOURCES.EFFICIENCY.STDDEV     )[2], append = TRUE, sep = ",");
 
-} # write.input()
+  ### internal variable
+}

@@ -1,17 +1,29 @@
-################################################################################
-# Plot settings for all plots
+s.plot.settings.begin.end <-
+function# Plot settings for all plots
+### internal function for sisus
+(filename.prefix = "SISUS"
+### internal variable
+, plot.filename = "default_filename"
+### internal variable
+, plot.mode = "settings"
+### internal variable
+, plot.format = 1
+### internal variable
+)
+{
+  ##details<<
+  ## interal function for sisus.run()
+
 #
 #   if modifying plot file types, need to update:
 #     Excel workbook, for input settings
 #     assign.variables.R, for reading workbook input and setting plot.format.list
 #     s.plot.settings.begin.end.R, this function for settings
 #
-s.plot.settings.begin.end = function (filename.prefix = "SISUS", plot.filename = "default_filename", plot.mode = "settings", plot.format = 1)
-{
   ##library("Cairo"); # for raster formats under unix
 
   # determine if running in windows or unix environment
-  OS = .Platform$OS.type;
+  #OS = .Platform$OS.type;
 
   ################################################################################
   if (plot.mode == "settings")
@@ -113,8 +125,9 @@ s.plot.settings.begin.end = function (filename.prefix = "SISUS", plot.filename =
 
     # to interactive display
     if (plot.format == 0) {
-      if (OS == "unix") { X11(); }
-      if (OS == "windows") { windows(); }
+      #if (OS == "unix") { X11(); }
+      #if (OS == "windows") { windows(); }
+      dev.new();
     }
 
     # png is default output since quick display on web and used to convert to other raster formats
@@ -229,5 +242,5 @@ s.plot.settings.begin.end = function (filename.prefix = "SISUS", plot.filename =
     #graphics.off(); # don't use
   } # end
 
-} # s.plot.settings.begin.end()
-
+  ### internal variable
+}

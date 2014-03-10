@@ -1,7 +1,21 @@
-################################################################################
-# Polytope constraints (incorporates both Isotope and Additional linear constraints)
-polytope.constraints = function (lc, n.sources, n.isotopes, biomass.values, simplex.include.sw)
+polytope.constraints <-
+function# Polytope constraints (incorporates both Isotope and Additional linear constraints)
+### internal function for sisus
+(lc
+### internal variable
+, n.sources
+### internal variable
+, n.isotopes
+### internal variable
+, biomass.values
+### internal variable
+, simplex.include.sw
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
   # unpack the list of additional linear constraints
   b1.constraints = lc$b1.constraints;
   A1.constraints = lc$A1.constraints;
@@ -64,4 +78,5 @@ polytope.constraints = function (lc, n.sources, n.isotopes, biomass.values, simp
   Ab$b3 = b3;
   Ab$A3 = A3;
   return( as.list(Ab) );
-} # polytope.constraints()
+  ### internal variable
+}

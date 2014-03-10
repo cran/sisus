@@ -1,7 +1,39 @@
-################################################################################
-# Defines linear constraints for each sample from the isotope distribution, passed to sample.from.polytope()
-polytope.multiple.samples = function (M, n.samples.isotope.mvn, n.isotopes, n.sources, isotope.mvn.sample.indy.mixture, concentration.sources, efficiency.sources, biomass.per.individual.sources, number.of.individuals.sources, lc, skip, burnin, names.sources, SW)
+polytope.multiple.samples <-
+function# Defines linear constraints for each sample from the isotope distribution, passed to sample.from.polytope()
+### internal function for sisus
+(M
+### internal variable
+, n.samples.isotope.mvn
+### internal variable
+, n.isotopes
+### internal variable
+, n.sources
+### internal variable
+, isotope.mvn.sample.indy.mixture
+### internal variable
+, concentration.sources
+### internal variable
+, efficiency.sources
+### internal variable
+, biomass.per.individual.sources
+### internal variable
+, number.of.individuals.sources
+### internal variable
+, lc
+### internal variable
+, skip
+### internal variable
+, burnin
+### internal variable
+, names.sources
+### internal variable
+, SW
+### internal variable
+)
 {
+  ##details<<
+  ## interal function for sisus.run()
+
   ########################################
   # Draw from polytope
   # for each sample from the distribution of isotopes
@@ -63,4 +95,5 @@ polytope.multiple.samples = function (M, n.samples.isotope.mvn, n.isotopes, n.so
   POLYTOPE.SAMPLE$n.vertices         = n.vertices        ;
   ##POLYTOPE.SAMPLE$V.sam              = V.sam             ;
   return( as.list(POLYTOPE.SAMPLE) );
-} # polytope.multiple.samples()
+  ### internal variable
+}

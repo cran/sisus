@@ -1,15 +1,31 @@
-################################################################################
-# CORE function to draw the samples from the polytope
-sample.from.polytope = function (Ab, M, skip, burnin, warning.sw, i.samples.isotope.mvn = 1)
+sample.from.polytope <-
+function# CORE function to draw the samples from the polytope
+### internal function for sisus
+(Ab
+### internal variable
+, M
+### internal variable
+, skip
+### internal variable
+, burnin
+### internal variable
+, warning.sw
+### internal variable
+, i.samples.isotope.mvn = 1
+### internal variable
+)
 {
-  library("polyapost");   # for drawing samples uniformly from solution polytope
+  ##details<<
+  ## interal function for sisus.run()
+
+  # attached via DESCRIPTION # library("polyapost");   # for drawing samples uniformly from solution polytope
 
   sam = NULL;
 
   # determine if running in windows or unix environment
   OS = .Platform$OS.type;
 #  if (OS == "unix") {
-    library("rcdd");      # for determining vertices of solution polytope
+    # attached via DESCRIPTION # library("rcdd");      # for determining vertices of solution polytope
     # Using RCDD as formal check of whether a solution exists
     # get verticies
 
@@ -24,6 +40,7 @@ sample.from.polytope = function (Ab, M, skip, burnin, warning.sw, i.samples.isot
     H.rep = rbind(cbind(rep(1,length(Ab$b1)),  Ab$b1, -Ab$A1),
                   cbind(rep(0,length(Ab$b2)),  Ab$b2, -Ab$A2),
                   cbind(rep(0,length(Ab$b3)), -Ab$b3,  Ab$A3));
+    H.rep <- d2q(H.rep) # convert decimal to rational 3/5/2014
     valid.cdd.check = validcdd(H.rep, representation="H");  # check that representation is valid
     if (valid.cdd.check == 0) {
       p.o = paste("\n"); write.out(p.o);
@@ -96,8 +113,17 @@ sample.from.polytope = function (Ab, M, skip, burnin, warning.sw, i.samples.isot
   ## Perform uniform sampling of solution polytope
   if (M != 1) { # nonunique solution
     eps = 0; #1e-2; # for finding an initial solution on boundary
+    ## Ab <- d2q(Ab) # convert decimal to rational 3/5/2014
+    ## Ab$A1 <- d2q(Ab$A1) # convert decimal to rational 3/5/2014
+    ## Ab$A2 <- d2q(Ab$A2) # convert decimal to rational 3/5/2014
+    ## Ab$A3 <- d2q(Ab$A3) # convert decimal to rational 3/5/2014
+    ## Ab$b1 <- d2q(Ab$b1) # convert decimal to rational 3/5/2014
+    ## Ab$b2 <- d2q(Ab$b2) # convert decimal to rational 3/5/2014
+    ## Ab$b3 <- d2q(Ab$b3) # convert decimal to rational 3/5/2014
+    ## eps   <- d2q(eps  ) # convert decimal to rational 3/5/2014
     initsol = feasible(Ab$A1,Ab$A2,Ab$A3,Ab$b1,Ab$b2,Ab$b3,eps);        # a starting solution within the solution polytope
-    if (initsol[1] < 0 ) {
+    #if (initsol[1] < 0 ) {
+    if ((initsol[1] < 0 ) & !all.equal(initsol[1], 0)) {  # negative, but not basically 0
       sol.feasible = 0;   # indicate an unfeasible solution
       sam = NULL;
       if (warning.sw == 0) {
@@ -127,8 +153,8 @@ sample.from.polytope = function (Ab, M, skip, burnin, warning.sw, i.samples.isot
     }; # if initsol
 
   }; # end M!=1
-
-  sam = rbind(V.sam, sam);                      # append vertices to beginning of sample
+              # convert rational to decimal 3/5/2014
+  sam = rbind(q2d(V.sam), q2d(sam));                      # append vertices to beginning of sample
 
   SAMPLE = new.env();  # create a list to return sample (sam) with whether it was feasible (sol.feasible)
   SAMPLE$sam          = sam         ;
@@ -139,4 +165,5 @@ sample.from.polytope = function (Ab, M, skip, burnin, warning.sw, i.samples.isot
 
   return( as.list(SAMPLE) );
 
-} # sample.from.polytope()
+  ### internal variable
+}
