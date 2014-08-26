@@ -1,4 +1,3 @@
 import(MASS, RColorBrewer, coda, gtools, moments, polyapost, rcdd, stats)
-
+importFrom(gdata, read.xls, trim)
 exportPattern("^[[:alpha:]]+")
-

@@ -14,7 +14,7 @@
 \details{interal function for sisus.run()}
 \value{internal variable}
 
-\author{Erik Barry Erhardt <erik@statacumen.com> [aut, cre]}
+\author{Erik Barry Erhardt <erik@statacumen.com>}
 
 
 

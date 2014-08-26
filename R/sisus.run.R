@@ -387,6 +387,22 @@
 # filename = "SISUS_v0_09_template_S33only.xls";
 # sisus.run(filename)
 ##
+## 8/26/2014 8:23PM
+# per https://mail.google.com/mail/u/0/#search/cran+sisus/14786840e8d42927
+# Prof Brian Ripley via statacumen.com
+# Jul 30
+#
+# to Erik, CRAN
+# This misuses the 'exec' directory:
+#
+# sisus/exec:
+# SISUS_v0_09_template.xls
+#
+# which is intended for *scripts* (see 'Writing R Extensions').
+# It looks like that file is not in fact used but downloaded from http://statacumen.com/sw/sisus/examples/SISUS_v0_09_template.xls .
+# Please arrange to install from 'inst', e.g. 'inst/extdata', and use system.file() to locate it.
+##
+# Moved from /exec to /inst/extdata, removed /exec, incremented version, recompiled
 
 sisus.run <-
 structure( # structure to add an example attribute at the end
@@ -396,12 +412,12 @@ function# driver program for SISUS
 ##references<< \url{http://statacumen.com/sisus/}
 (filename
 ### The Excel workbook name.  A modified version of sisus_*_templateX.xls
-### template workbook available in the package sisus/exec folder and at http://statacumen.com/sisus/
+### template workbook available in the package sisus/inst/extdata folder and at http://statacumen.com/sisus/
 )
 # DRIVER FUNCTION -------------------------------------------------------------
 {
 
-  sisus.version = "3.9-012 (2014-03-10)";   # current version of SISUS, from completed list above
+  sisus.version = "3.9-013 (2014-08-26)";   # current version of SISUS, from completed list above
   R.version = R.Version()$version.string; # version of R running
 
   # Output filenames (more after variables to include filename.prefix)
